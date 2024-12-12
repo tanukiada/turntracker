@@ -9,6 +9,7 @@ class Player:
     def __init__(self, name, initiative):
         self.name = name
         self.initiative = initiative
+        self.turn = ''
     def __str__(self):
         return f'{self.name}: {self.initiative}'
     def __repr__(self):
@@ -65,16 +66,22 @@ def listPlayersSorted():
     return sorted(usersList, key=attrgetter('initiative'), reverse=True)
 
 def trackInitiative():
+    i = 0
+    length = len(listPlayersSorted())
     while(True):
+        if i < length:
+            listPlayersSorted()[i].turn = "*"
         for user in listPlayersSorted():
-            if :
-                print(f'{user} *')
-            else:
-                print(f'{user}')
-
+            print(f'{user.initiative} {user.name} {user.turn}')
         if(input("Press Enter for next turn, press Q to end tracking: ").upper() == 'Q'):
             print("Ending Tracking...")
             break
+            listPlayersSorted()[i].turn = ""
+            i += 1
+        else:
+            i = 0
+        
+        
 
 while(True):
     showMenu()
