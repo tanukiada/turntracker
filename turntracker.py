@@ -61,14 +61,13 @@ def listPlayersSorted():
 
 def trackInitiative():
     sortedList = listPlayersSorted()
-    print(sortedList)
     i = 0
     length = len(sortedList)
     while(True):
         if i < length:
             sortedList[i].turn = '*'
-        for user in listPlayersSorted():
-            print(f'{user.initiative} {user.name} {user.turn}')
+            for user in sortedList:
+                print(f'{user.initiative} {user.name} {user.turn}')
             sortedList[i].turn = ''
             i += 1
         else:
