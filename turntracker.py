@@ -14,39 +14,34 @@ class Player:
         return f'{self.name}: {self.initiative}'
     def __repr__(self):
         return repr((self.name, self.initiative))
-    def __eq__(self, other):
-        if(isinstance(other, Player)):
-            return self.name == other.name and self.initiative == other.initiative
-        return False
-    def __lt__(self, other):
-        return self.initiative < other.initiative
 
 def showMenu():
-    print("1. Add User")
-    print("2. Add Users from file")
-    print("3. Delete User")
-    print("4. Clear Initiative")
-    print("5. Set Initiative")
-    print("6. Track Initiative")
-    print("Q to Quit")
+    print('1. Add User')
+    print('2. Add Users from file')
+    print('3. Delete User')
+    print('4. Clear Initiative')
+    print('5. Set Initiative')
+    print('6. Track Initiative')
+    print('Q to Quit')
 
 def addUser():
-    name = input("Name: ")
+    name = input('Name: ')
     user = Player(name, 0)
     usersList.append(user)
 
 def addUserFromFile():
     with open('users.txt') as f:
-        read_data = f.read().split('\n')
+        read_data = f.read().splitlines()
     for line in read_data:
         entry = line.split()
-        user = Player(entry[0], entry[1])
+        user = Player(entry[0], int(entry[1]))
+        print(user)
         usersList.append(user)
     print(usersList)
 
 def deleteUser():
     print(str(usersList))
-    choice = input("Choose a user from list: ")
+    choice = input('Choose a user from list: ')
     for user in usersList:
         if user.name == choice:
             usersList.remove(user)
@@ -57,48 +52,50 @@ def clearInitiative():
 
 def setInitiative():
     print(str(usersList))
-    choice = input("Choose a user from list: ")
+    choice = input('Choose a user from list: ')
     for user in usersList:
         if user.name == choice:
-            user.initiative = int(input("Input initiative: "))
+            user.initiative = int(input('Input initiative: '))
 
 def listPlayersSorted():
     return sorted(usersList, key=attrgetter('initiative'), reverse=True)
 
 def trackInitiative():
+    sortedList = listPlayersSorted()
+    print(sortedList)
     i = 0
-    length = len(listPlayersSorted())
+    length = len(sortedList)
     while(True):
         if i < length:
-            listPlayersSorted()[i].turn = "*"
+            sortedList[i].turn = '*'
         for user in listPlayersSorted():
             print(f'{user.initiative} {user.name} {user.turn}')
-        if(input("Press Enter for next turn, press Q to end tracking: ").upper() == 'Q'):
-            print("Ending Tracking...")
+        if(input('Press Enter for next turn, press Q to end tracking: ').upper() == 'Q'):
+            print('Ending Tracking...')
             break
-            listPlayersSorted()[i].turn = ""
+            sortedList[i].turn = ''
             i += 1
         else:
             i = 0
 
 while(True):
     showMenu()
-    choice = input("Enter your choice: ")
+    choice = input('Enter your choice: ')
 
-    if choice == "1":
+    if choice == '1':
         addUser()
-    elif choice == "2":
+    elif choice == '2':
         addUserFromFile()
-    elif choice == "3":
+    elif choice == '3':
         deleteUser()
-    elif choice == "4":
+    elif choice == '4':
         clearInitiative()
-    elif choice == "5":
+    elif choice == '5':
         setInitiative()
-    elif choice == "6":
+    elif choice == '6':
         trackInitiative()
-    elif choice.upper() == "Q":
-        print("Exiting...")
+    elif choice.upper() == 'Q':
+        print('Exiting...')
         break
     else:
-        print("Incorrect Input")
+        print('Incorrect Input')
