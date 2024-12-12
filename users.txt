@@ -1,0 +1,3 @@
+river 10
+ada 15
+ash 8
