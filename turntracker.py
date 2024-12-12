@@ -70,11 +70,11 @@ def trackInitiative():
                 print(f'{user.initiative} {user.name} {user.turn}')
             sortedList[i].turn = ''
             i += 1
+            if(input('Press Enter for next turn, press Q to end tracking: ').upper() == 'Q'):
+                print('Ending Tracking...')
+                break
         else:
             i = 0
-        if(input('Press Enter for next turn, press Q to end tracking: ').upper() == 'Q'):
-            print('Ending Tracking...')
-            break
             
 
 while(True):
