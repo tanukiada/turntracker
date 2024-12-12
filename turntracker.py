@@ -35,7 +35,6 @@ def addUserFromFile():
     for line in read_data:
         entry = line.split()
         user = Player(entry[0], int(entry[1]))
-        print(user)
         usersList.append(user)
     print(usersList)
 
@@ -70,13 +69,14 @@ def trackInitiative():
             sortedList[i].turn = '*'
         for user in listPlayersSorted():
             print(f'{user.initiative} {user.name} {user.turn}')
-        if(input('Press Enter for next turn, press Q to end tracking: ').upper() == 'Q'):
-            print('Ending Tracking...')
-            break
             sortedList[i].turn = ''
             i += 1
         else:
             i = 0
+        if(input('Press Enter for next turn, press Q to end tracking: ').upper() == 'Q'):
+            print('Ending Tracking...')
+            break
+            
 
 while(True):
     showMenu()
