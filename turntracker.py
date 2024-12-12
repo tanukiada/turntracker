@@ -80,8 +80,6 @@ def trackInitiative():
             i += 1
         else:
             i = 0
-        
-        
 
 while(True):
     showMenu()
